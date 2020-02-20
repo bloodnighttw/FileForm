@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from accounts import views as view1
+from Post.views import post_index,post
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',view1.login),
-    path('signup/',view1.register)
+    path('signup/',view1.register),
+    path('index/',post_index),
+    path('<str:post_id>',post)
 ]
