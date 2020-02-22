@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import auth, User
-from .models import form_with_email
+from .models import form as form_with_email
 
 
 # Create your views here.
@@ -12,13 +12,10 @@ def register(request):
     if request.method == 'POST':
         form = form_with_email(request.POST)
         if form.is_valid():
+            print(request.POST['first_name'])
             form.save()
-            print("sssssssssssssssssssssss")
-            return redirect('/index')
-        else:
-            print("bang")
-    form = form_with_email()
-    return render(request, 'account/signup.html', {'form': form})
+        return redirect('/index')
+    return render(request, 'account/signup.html')
 
 
 def login(request):

@@ -36,7 +36,21 @@
 
                 </ul>
                 <div class="navbar-nav">
+
+                    <r3 class="nav-item">
+                        <a class="nav-link" href="/about">about</a>
+                    </r3>
+                    
+                    {% if user.is_superuser%}
+                        <r3>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/create">Post</a>
+                            </li>
+                        </r3>
+                        {% endif %}
                     <li class="nav-item dropdown">
+                        
+
                         {% if user.is_authenticated %}
 
 
@@ -50,19 +64,21 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Log out</a>
                             </div>
-                            </li>
+                    </li>
 
                         {% else %}
 
-                            <r3 class="nav-item">
-                                <a class="nav-link" href="http://localhost:8000/signup">Sign up</a>
-                            </r3>
+                    <r3 class="nav-item">
+                        <a class="nav-link" href="/signup">Sign up</a>
+                    </r3>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8000/login/">Log in</a>
-                            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/">Log in</a>
+                    </li>
 
                         {% endif %}
+
+                    
 
 
                 </div>

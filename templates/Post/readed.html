@@ -3,7 +3,28 @@
 {% block content %}
 
     {% for readed in readeds %}
-    <h1>{{ readed }}</h1>
+    	
     {% endfor %}
+
+    <table class="table">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">姓名</th>
+	      <th scope="col">Username</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+	  {% for readed in readeds%}
+	    <tr>
+	      <th scope="row">{{ forloop.counter }}</th>
+	      <td>{{ readed.name }}</td>	   
+	      <td>@{{ readed.username }}</td>
+	    </tr>
+	    
+	    {% endfor %}
+	  </tbody>
+	</table>
 
 {% endblock %}

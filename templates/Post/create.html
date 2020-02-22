@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
 
-        <input name="title" placeholder="title"> <br>
-        <textarea name="content" type="text" placeholder="content"></textarea><br>
-        <input name="post_id" placeholder="post_id" ><br>
-        <input type="submit">
+<div class="container">
+	<div class="shadow-lg p-3 mb-5 bg-white rounded container">
+	    <form method="POST">
+	        {% csrf_token %}
 
-    </form>
+	        <input class="form-control" name="title" placeholder="title"> <br>
+	        <textarea class="form-control" name="content" type="text" placeholder="content" rows="20"></textarea><br>
+	        <input class="form-control" name="preview" type="text" placeholder="preview" ><br>
+	        <input class="form-control" name="post_id" placeholder="post_id" ><br>
+	        <input class="btn btn-outline-dark btn-block" type="submit">
+
+	    </form>
+	</div>
+</div>
 {% endblock %}

@@ -2,11 +2,24 @@
 
 {% block content %}
 
-    {% if user.is_superuser %}
-        <a href="/{{ post.post_id }}/readed">readed</a>
-    {% endif %}
+<div class="container">
+	<div class="shadow-lg p-3 mb-5 bg-white rounded container">
+		<div class="container">
+			<h1>{{ post.title }}</h1>
 
-	<h1>{{ post.title }}</h1>
-	<p> {{ post.content }}</p>
+			{% if user.is_superuser %}
+
+		        <a href="/{{ post.post_id }}/readed" class="btn btn-outline-primary" >readed</a>
+		        <a href="/{{ post.post_id }}/readed" class="btn btn-outline-warning" >edit</a>
+		        <a href="/{{ post.post_id }}/del" class="btn btn-outline-danger" >delete</a>
+		        <br>
+		        <br>
+		    {% endif %}
+
+
+			<p style="white-space: pre-line;"> {{ post.content }}</p>
+		</div>
+	</div>
+</div>
 
 {% endblock %}

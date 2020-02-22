@@ -4,5 +4,6 @@ from django.db import models
 class Post(models.Model):
 	title = models.CharField( max_length = 200 )
 	content = models.TextField()
+	preview = models.CharField(max_length = 150 )
 	post_id = models.CharField( max_length = 100 )
 	readed = models.TextField()
