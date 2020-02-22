@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from accounts import views as view1
-from Post.views import post_index,post
+from Post.views import post_index,post,readed,create_Post as create
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',view1.login),
     path('signup/',view1.register),
     path('index/',post_index),
-    path('<str:post_id>',post)
+    path('create/', create),
+    path('<str:post_id>',post),
+    path('<str:post_id>/readed',readed),
 ]

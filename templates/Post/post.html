@@ -1,6 +1,12 @@
 {% extends 'base.html' %} 
 
 {% block content %}
+
+    {% if user.is_superuser %}
+        <a href="/{{ post.post_id }}/readed">readed</a>
+    {% endif %}
+
 	<h1>{{ post.title }}</h1>
 	<p> {{ post.content }}</p>
+
 {% endblock %}
