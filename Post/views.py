@@ -31,6 +31,7 @@ def readed(request,post_id):
 		return redirect('index/')
 
 def create_Post(request):
+
 	if(not request.user.is_superuser):
 		return redirect('index/')
 
