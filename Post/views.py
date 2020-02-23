@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Post
-import json
+import json,markdown2
 
 # Create your views here.
 def post_index(request):
@@ -8,23 +8,22 @@ def post_index(request):
 	return render(request,'index.html',{'posts':all1[::-1]})
 
 def post(request,post_id):
-	try:	
-		if request.user.is_authenticated:
-			post = Post.objects.get(post_id = post_id)
-			readeds = json.loads(post.readed)
-			time = int(0)
-			for readed in readeds:
-				user = readed.get('username')
-				if user == request.user.username:
-					time = time+1
-			if time == 0 :
-				name = request.user.first_name + request.user.last_name
-				readeds.append({'username':request.user.username,'name':name})
-			post.readed = json.dumps(readeds)
-			post.save()
-			return render(request,'Post/post.html',{'post':post})
-	except:
-		return redirect('/index/')
+
+	if request.user.is_authenticated:
+		post = Post.objects.get(post_id = post_id)
+		readeds = json.loads(post.readed)
+		time = int(0)
+		for readed in readeds:
+			user = readed.get('username')
+			if user == request.user.username:
+				time = time+1
+		if time == 0 :
+			name = request.user.first_name + request.user.last_name
+			readeds.append({'username':request.user.username,'name':name})
+		post.readed = json.dumps(readeds)
+		post.save()
+		content = markdown2.markdown(post.content)
+		return render(request,'Post/post.html',{'post':post,'content':content})
 	return redirect('/index/')
 	
 
