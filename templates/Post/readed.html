@@ -3,50 +3,54 @@
 {% block content %}
 
     {% for readed in readeds %}
-    	
+
     {% endfor %}
 
     <table class="table">
-	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">姓名</th>
-	      <th scope="col">Username</th>
-	    </tr>
-	  </thead>
-	  <tbody>
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">座號</th>
+            <th scope="col">姓名</th>
+            <th scope="col">Username</th>
+            <th scope="col">電話號碼</th>
+        </tr>
+        </thead>
+        <tbody>
 
-	  {% for readed in readeds%}
-	    <tr>
-	      <th scope="row">{{ forloop.counter }}</th>
-	      <td>{{ readed.name }}</td>	   
-	      <td>@{{ readed.username }}</td>
-	    </tr>
-	    
-	    {% endfor %}
-	  </tbody>
-	</table>
+        {% for readed in readeds %}
+            <tr>
+                <td > {{ readed.profile.number }}</td>
+                <td>{{ readed.first_name }} {{ readed.last_name }}</td>
+                <td>@{{ readed.username }}</td>
+                <td>{{ readed.profile.Phone }}</td>
+            </tr>
 
-	<table class="table">
-	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">姓名</th>
-	      <th scope="col">Username</th>
-	    </tr>
-	  </thead>
-	  <tbody>
+        {% endfor %}
+        </tbody>
+    </table>
 
-	  	{% for readed in non_readeds%}
-	    <tr>
-	      <th scope="row">{{ forloop.counter }}</th>
-	      <td>{{ readed.first_name}} {{ readed.last_name }}</td>	   
-	      <td>@{{ readed.username }}</td>
-	    </tr>
-	    
-		{% endfor %}
-	  </tbody>
-	</table>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">座號</th>
+            <th scope="col">姓名</th>
+            <th scope="col">Username</th>
+            <th scope="col">電話號碼</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for readed in non_readeds %}
+            <tr>
+                <th scope="row">{{ readed.profile.number }}</th>
+                <td>{{ readed.first_name }} {{ readed.last_name }}</td>
+                <td>@{{ readed.username }}</td>
+                <td>{{ readed.profile.Phone }}</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
 

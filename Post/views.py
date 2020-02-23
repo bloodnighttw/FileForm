@@ -35,13 +35,18 @@ def readed(request,post_id):
 			post = Post.objects.get(post_id = post_id)
 			readeds = json.loads(post.readed)
 			no_reads = []
+			user_readeds = []
 			for no_read in User.objects.all():
 				no_reads.append(no_read)
 
 			for readed in readeds:
+				user_readeds.append(User.objects.get(username = readed.get('username')))
 				no_reads.remove(User.objects.get(username = readed.get('username')))
 
-			return render(request,'Post/readed.html',{'readeds':readeds,'post':post,'non_readeds':no_reads})
+			###To user list
+
+
+			return render(request,'Post/readed.html',{'readeds':user_readeds,'post':post,'non_readeds':no_reads})
 	except:	
 		return render(request,'about/Error.html')
 	
