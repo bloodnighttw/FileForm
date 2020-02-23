@@ -5,7 +5,7 @@ import json,markdown as markdown2
 
 # Create your views here.
 def post_index(request):
-	all1 = Post.objects.all()
+	all1 = Post.objects.all().order_by('post_id')
 	return render(request,'index.html',{'posts':all1[::-1]})
 
 def post(request,post_id):
@@ -61,6 +61,7 @@ def create_Post(request):
 
 		post = Post(title = title, content = content ,post_id = post_id, readed = readed ,preview = preview)
 		post.save()
+		return redirect('/index/')
 
 	return render(request,'Post/create.html')
 
