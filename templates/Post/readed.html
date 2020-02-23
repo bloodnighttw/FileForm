@@ -5,9 +5,16 @@
     {% for readed in readeds %}
 
     {% endfor %}
-
     <table class="table">
         <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="text-align: center">已讀</th>
+            </tr>
+        </thead>
+    </table>
+
+    <table class="table thead-light">
+        <thead >
         <tr>
             <th scope="col">座號</th>
             <th scope="col">姓名</th>
@@ -31,6 +38,25 @@
 
     <table class="table">
         <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="text-align: center">已讀</th>
+            </tr>
+        </thead>
+    </table>
+
+    <br>
+    <br>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="text-align: center">未讀</th>
+            </tr>
+        </thead>
+    </table>
+
+    <table class="table thead-light">
+        <thead >
         <tr>
             <th scope="col">座號</th>
             <th scope="col">姓名</th>
@@ -50,6 +76,14 @@
 
         {% endfor %}
         </tbody>
+    </table>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="text-align: center">未讀</th>
+            </tr>
+        </thead>
     </table>
 
 {% endblock %}
