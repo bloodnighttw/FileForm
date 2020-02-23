@@ -20,7 +20,7 @@
 
 				{% autoescape off  %}
 				<div style="white-space: pre-line;word-break: all;">
-	            
+
 	                {{ content }}
 	            </div>
 	            {% endautoescape %}
@@ -34,4 +34,8 @@
 </div>
 
 
+{% endblock %}
+
+{% block title %}
+    {{ title  }}
 {% endblock %}

@@ -24,11 +24,10 @@ def post(request,post_id):
 			post.readed = json.dumps(readeds)
 			post.save()
 			content = markdown2.markdown("# ["+post.title+"]\n"+post.content)
-			return render(request,'Post/post.html',{'content':content})
+			return render(request,'Post/post.html',{'content':content , 'title': post.title})
 	except:
-		return redirect('/index/')
-	return redirect('/index/')
-	
+		return render(request,'about/Error.html')
+
 
 def readed(request,post_id):
 	try:
@@ -44,7 +43,7 @@ def readed(request,post_id):
 
 			return render(request,'Post/readed.html',{'readeds':readeds,'post':post,'non_readeds':no_reads})
 	except:	
-		return redirect('/index')
+		return render(request,'about/Error.html')
 	
 
 def create_Post(request):
