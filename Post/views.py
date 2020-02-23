@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
+
+from accounts.models import Profile
 from .models import Post
 import json,markdown as markdown2
 
@@ -43,10 +45,19 @@ def readed(request,post_id):
 				user_readeds.append(User.objects.get(username = readed.get('username')))
 				no_reads.remove(User.objects.get(username = readed.get('username')))
 
+			qset = Profile.objects.all().order_by('number')
+			profilelist = []
+			for g in qset:
+				profilelist.append(g)
+
+			for readed in user_readeds:
+				profile = Profile.objects.get(user = readed)
+				profilelist.remove(profile)
+
 			###To user list
 
 
-			return render(request,'Post/readed.html',{'readeds':user_readeds,'post':post,'non_readeds':no_reads})
+			return render(request,'Post/readed.html',{'readeds':user_readeds,'post':post,'non_readeds':profilelist})
 	except:	
 		return render(request,'about/Error.html')
 	
@@ -99,8 +110,3 @@ def edit(request,post_id):
 
 
 ###del_check###
-'''
-def del_check(request,post_id):
-	if request.is_superuser:
-		post = Post.objects.get(post_id = post_id)
-'''
