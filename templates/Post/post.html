@@ -8,21 +8,27 @@
 <div class="container">
 	<div class="shadow-lg p-3 mb-5 bg-white rounded container">
 		<div class="container">
-			<h1>{{ post.title }}</h1>
+			
+			<div class="container" >
+				{% if user.is_superuser %}
 
-			{% if user.is_superuser %}
+			        <a href="readed" class="btn btn-outline-primary" >readed</a>
+			        <a href="{{ post.post_id }}/readed/" class="btn btn-outline-warning" >edit</a>
+			        <a href="del" class="btn btn-outline-danger" >delete</a>
+			        
+			    {% endif %}
 
-		        <a href="/{{ post.post_id }}/readed" class="btn btn-outline-primary" >readed</a>
-		        <a href="/{{ post.post_id }}/readed" class="btn btn-outline-warning" >edit</a>
-		        <a href="/{{ post.post_id }}/del" class="btn btn-outline-danger" >delete</a>
-		        <br>
-		        <br>
-		    {% endif %}
-			<div style="white-space: pre-line;">
-            {% autoescape off %}
-                {{ content }}
-            {% endautoescape %}
-            </div>
+				{% autoescape off  %}
+				<div style="white-space: pre-line;word-break: all;">
+	            
+	                {{ content }}
+	            </div>
+	            {% endautoescape %}
+
+	            
+			</div>
+
+            
 		</div>
 	</div>
 </div>

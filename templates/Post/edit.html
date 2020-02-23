@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+	<div class="shadow-lg p-3 mb-5 bg-white rounded container">
+	    <form method="POST">
+	        {% csrf_token %}
+
+	        <textarea class="form-control" name="title" placeholder="title" row="1">{{ content.title }} </textarea><br>
+	        <textarea class="form-control" name="content" type="text" placeholder="content" rows="20">{{ content.content }}</textarea><br>
+	        <textarea class="form-control" name="preview" type="text" placeholder="preview" row="1">{{ content.preview }} </textarea><br>
+	        <input class="btn btn-outline-dark btn-block" type="submit">
+
+	    </form>
+	</div>
+</div>
+{% endblock %}

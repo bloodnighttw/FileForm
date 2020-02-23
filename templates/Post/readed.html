@@ -27,4 +27,25 @@
 	  </tbody>
 	</table>
 
+	<table class="table">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">姓名</th>
+	      <th scope="col">Username</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+	  	{% for readed in non_readeds%}
+	    <tr>
+	      <th scope="row">{{ forloop.counter }}</th>
+	      <td>{{ readed.first_name}} {{ readed.last_name }}</td>	   
+	      <td>@{{ readed.username }}</td>
+	    </tr>
+	    
+		{% endfor %}
+	  </tbody>
+	</table>
+
 {% endblock %}
