@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+	<div class="shadow-lg p-3 mb-5 bg-white rounded container">
+	    <form method="POST">
+	        {% csrf_token %}
+            <h6>座號</h6>
+	        <textarea class="form-control" name="num" placeholder="num" rows="1">{{ user.profile.number }} </textarea><br>
+            <h6>電話</h6>
+	        <textarea class="form-control" name="phone"  placeholder="phone" rows="1">{{ user.profile.Phone }} </textarea><br>
+            <h6>信箱</h6>
+            <textarea class="form-control" name="email"  placeholder="phone" rows="1">{{ user.email }} </textarea><br>
+            <h6> 由於技術問題，目前密碼暫時不能修改</h6>
+	        <input class="btn btn-outline-dark btn-block" type="submit">
+
+	    </form>
+	</div>
+</div>
+{% endblock %}
+
+{% block title %}
+    Edit
+{% endblock %}

@@ -13,19 +13,19 @@ def register(request):
         username = request.POST['username']
         try:
             userlist =  User.objects.get(username= username)
-            return render(request,'about/Error.html')
+            return render(request, 'other/Error.html')
         except:
             print("3")
         email = request.POST['email']
         try:
             userlist = User.objects.get(email= email)
-            return render(request,'about/Error.html')
+            return render(request, 'other/Error.html')
         except:
             print("2")
         password = request.POST['password1']
         if password != request.POST['password2']:
             print("1")
-            return render(request, 'about/Error.html')
+            return render(request, 'other/Error.html')
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         user = User.objects.create(username= username,email= email ,first_name=first_name ,last_name = last_name)

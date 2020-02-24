@@ -13,11 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import handler404, url
 from django.contrib import admin
 from django.urls import path
 from accounts import views as view1
 from Post.views import post_index,post,readed,create_Post,del_Post,edit
-from other.views import home,about
+from other.views import home,about,profileEdit
+from errorapp.views import error404,error500
+
+handler404 = error404
+handler500 = error500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,11 +31,15 @@ urlpatterns = [
     path('logout/',view1.logout),
     path('index/',post_index),
     path('create/', create_Post),
+    path('profile/edit/',profileEdit),
     path('about/',about),
-    path('<str:post_id>/',post),
-    path('<str:post_id>/readed',readed),
-    path('<str:post_id>/del',del_Post),
-    path('<str:post_id>/edit',edit),
+    path('post/<str:post_id>/',post),
+    path('post/<str:post_id>/readed',readed),
+    path('post/<str:post_id>/del',del_Post),
+    path('post/<str:post_id>/edit',edit),
     path('',home),
-
 ]
+
+
+
+

@@ -28,7 +28,7 @@ def post(request,post_id):
 			content = markdown2.markdown("# ["+post.title+"]\n"+post.content)
 			return render(request,'Post/post.html',{'content':content , 'title': post.title})
 	except:
-		return render(request,'about/Error.html')
+		return render(request, 'other/Error.html')
 
 
 def readed(request,post_id):
@@ -59,7 +59,7 @@ def readed(request,post_id):
 
 			return render(request,'Post/readed.html',{'readeds':user_readeds,'post':post,'non_readeds':profilelist})
 	except:	
-		return render(request,'about/Error.html')
+		return render(request, 'other/Error.html')
 	
 
 def create_Post(request):
