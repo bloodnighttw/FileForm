@@ -12,39 +12,47 @@ def register(request):
     if request.method == 'POST':
         username = request.POST['username']
         if username == '':
+            messages.warning(request,'username empty')
             return redirect('/signup/')
         try:
             userlist =  User.objects.get(username= username)
-            return render(request, 'other/Error.html')
+            messages.warning(request,'username has been registered')
+            return redirect('/signup/')
         except:
             print("3")
 
         email = request.POST['email']
         if email == '':
+            messages.warning(request,'email empty')
             return redirect('/signup/')
         try:
             userlist = User.objects.get(email= email)
-            return render(request, 'other/Error.html')
+            messages.warning(request,'email has been registered')
+            return redirect('/signup/')
         except:
             print("2")
 
         password = request.POST['password1']
         if password == '':
+            messages.warning(request,'password empty')
             return redirect('/signup/')
         if password != request.POST['password2']:
+            messages.warning(request,'密碼確認不正確')
             print("1")
-            return render(request, 'other/Error.html')
+            return redirect('/signup/')
 
 
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
-        if first_name == '' and last_name == '':
+        if first_name == '' or last_name == '':
+            messages.warning(request,'姓名為空')
             return redirect('/signup/')
         
         num = request.POST['num']
         phone = request.POST['phone']
 
-        if num == None and phone == '':
+        if num == None :
+            messages.warning(request,'座號 為空')
             return redirect('/signup/')
 
         user = User.objects.create(username= username,email= email ,first_name=first_name ,last_name = last_name)
