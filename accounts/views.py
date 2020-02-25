@@ -11,31 +11,50 @@ def register(request):
         return redirect('/index')
     if request.method == 'POST':
         username = request.POST['username']
+        if username == '':
+            return redirect('/signup/')
         try:
             userlist =  User.objects.get(username= username)
             return render(request, 'other/Error.html')
         except:
             print("3")
+
         email = request.POST['email']
+        if email == '':
+            return redirect('/signup/')
         try:
             userlist = User.objects.get(email= email)
             return render(request, 'other/Error.html')
         except:
             print("2")
+
         password = request.POST['password1']
+        if password == '':
+            return redirect('/signup/')
         if password != request.POST['password2']:
             print("1")
             return render(request, 'other/Error.html')
+
+
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        if first_name == '' and last_name == '':
+            return redirect('/signup/')
+        
+        num = request.POST['num']
+        phone = request.POST['phone']
+
+        if num == None and phone == '':
+            return redirect('/signup/')
+
         user = User.objects.create(username= username,email= email ,first_name=first_name ,last_name = last_name)
         user.save()
         user.set_password(password)
         user.save()
-        num = request.POST['num']
-        phone = request.POST['phone']
+
         profile = Profile(user=user,number=int(num),Phone=phone)
         profile.save()
+        return redirect('/index/')
     return render(request, 'account/signup.html')
 
 
