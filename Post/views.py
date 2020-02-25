@@ -105,7 +105,7 @@ def edit(request,post_id):
 		post.content = request.POST['content']
 		post.preview = request.POST['preview']
 		post.save()
-		return redirect('/'+post_id)
+		return redirect('/post/'+post_id)
 	return render(request,'Post/edit.html',{'content':post})
 
 
