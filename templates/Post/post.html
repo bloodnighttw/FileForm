@@ -6,31 +6,31 @@
 
 
 
-        <div class="shadow-lg p-3 mb-5 bg-white rounded container">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded container">
 
 
-                <div class="container">
-                    {% if user.is_superuser %}
+        <div class="container">
+            {% if user.is_superuser %}
 
-                        <a href="readed" class="btn btn-outline-primary">readed</a>
-                        <a href="edit" class="btn btn-outline-warning">edit</a>
-                        <a href="del" class="btn btn-outline-danger">delete</a>
-                        <a href="top" class="btn btn-outline-info">Top</a>
+            <a href="readed" class="btn btn-outline-primary" >readed</a>
+            <a href="edit" class="btn btn-outline-warning">edit</a>
+            <a href="del" class="btn btn-outline-danger">delete</a>
+            <a href="top" class="btn btn-outline-info">Top</a>
 
-                    {% endif %}
+        {% endif %}
 
-                    {% autoescape off %}
+        {% autoescape off %}
 
 
-                        <divcontent style="white-space: pre-line;height: 100%;width: 100%;object-fit: contain;">
+            <divcontent style="white-space: pre-line;height: 100%;width: 100%;object-fit: contain;">
 
-                            {{ content }}
+                {{ content }}
 
-                        </divcontent>
-                    {% endautoescape %}
-                </div>
-
+            </divcontent>
+        {% endautoescape %}
         </div>
+    </div>
+
 
 
 {% endblock %}
