@@ -17,29 +17,26 @@ from django.conf.urls import handler404, url
 from django.contrib import admin
 from django.urls import path
 from accounts import views as view1
-from Post.views import post_index,post,readed,create_Post,del_Post,edit
-from other.views import home,about,profileEdit
-from errorapp.views import error404,error500
+from Post.views import post_index, post, readed, create_Post, del_Post, edit, top
+from other.views import home, about, profileEdit
+from errorapp.views import error404, error500
 
 handler404 = error404
 handler500 = error500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',view1.login),
-    path('signup/',view1.register),
-    path('logout/',view1.logout),
-    path('index/',post_index),
+    path('login/', view1.login),
+    path('signup/', view1.register),
+    path('logout/', view1.logout),
+    path('index/', post_index),
     path('create/', create_Post),
-    path('profile/edit/',profileEdit),
-    path('about/',about),
-    path('post/<str:post_id>/',post),
-    path('post/<str:post_id>/readed',readed),
-    path('post/<str:post_id>/del',del_Post),
-    path('post/<str:post_id>/edit',edit),
-    path('',home),
+    path('profile/edit/', profileEdit),
+    path('about/', about),
+    path('post/<str:post_id>/', post),
+    path('post/<str:post_id>/readed/', readed),
+    path('post/<str:post_id>/del/', del_Post),
+    path('post/<str:post_id>/edit', edit),
+    path('post/<str:post_id>/top/', top),
+    path('', home),
 ]
-
-
-
-

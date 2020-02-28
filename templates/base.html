@@ -7,10 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        divcontent {
+            width: 80vw;
+            height: 80vh;
+            display: table-cell;
+            vertical-align: middle;
+            word-break: break-all;
+
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+    </style>
 
 
 </head>
-<body  background={% block backgroundUrl %}{% endblock %}>
+
+
+<body background={% block backgroundUrl %}{% endblock %}>
+
 <div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -40,8 +59,8 @@
                     <r3 class="nav-item">
                         <a class="nav-link" href="/about">about</a>
                     </r3>
-                    
-                    {% if user.is_superuser%}
+
+                    {% if user.is_superuser %}
                         <r3>
                             <li class="nav-item">
                                 <a class="nav-link" href="/create">Post</a>
@@ -49,7 +68,7 @@
                         </r3>
                     {% endif %}
                     <li class="nav-item dropdown">
-                        
+
 
                         {% if user.is_authenticated %}
 
@@ -61,26 +80,24 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/profile/edit">Profile Edit</a>
                                 {% if user.is_superuser %}
-                                <a class="dropdown-item" href="/admin/">Admin Panel</a>
+                                    <a class="dropdown-item" href="/admin/">Admin Panel</a>
                                 {% endif %}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Log out</a>
                             </div>
-                    </li>
+                            </li>
 
                         {% else %}
 
-                    <r3 class="nav-item">
-                        <a class="nav-link" href="/signup">Sign up</a>
-                    </r3>
+                            <r3 class="nav-item">
+                                <a class="nav-link" href="/signup">Sign up</a>
+                            </r3>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login/">Log in</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login/">Log in</a>
+                            </li>
 
                         {% endif %}
-
-                    
 
 
                 </div>
