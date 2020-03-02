@@ -20,6 +20,7 @@ from accounts import views as view1
 from Post.views import post_index, post, readed, create_Post, del_Post, edit, top
 from other.views import home, about, profileEdit
 from errorapp.views import error404, error500
+from admin.views import userAdminPanel
 
 handler404 = error404
 handler500 = error500
@@ -39,4 +40,6 @@ urlpatterns = [
     path('post/<str:post_id>/edit', edit),
     path('post/<str:post_id>/top/', top),
     path('', home),
+    path('adminp/',userAdminPanel),
+
 ]

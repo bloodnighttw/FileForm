@@ -2,9 +2,6 @@
 
 {% block content %}
 
-    {% for readed in readeds %}
-
-    {% endfor %}
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -18,17 +15,18 @@
         <tr>
             <th scope="col">座號</th>
             <th scope="col">姓名</th>
-            <th scope="col">Username</th>
+            <th scope="col">email</th>
             <th scope="col">電話號碼</th>
         </tr>
         </thead>
         <tbody>
 
         {% for readed in readeds %}
+
             <tr>
                 <td > {{ readed.profile.number }}</td>
                 <td>{{ readed.first_name }} {{ readed.last_name }}</td>
-                <td>@{{ readed.username }}</td>
+                <td>{{ readed.email }}</td>
                 <td>{{ readed.profile.Phone }}</td>
             </tr>
 
@@ -60,7 +58,7 @@
         <tr>
             <th scope="col">座號</th>
             <th scope="col">姓名</th>
-            <th scope="col">Username</th>
+            <th scope="col">email</th>
             <th scope="col">電話號碼</th>
         </tr>
         </thead>
@@ -70,7 +68,7 @@
             <tr>
                 <th scope="row">{{ readed.number }}</th>
                 <td>{{ readed.user.first_name }} {{ readed.user.last_name }}</td>
-                <td>@{{ readed.user.username }}</td>
+                <td>{{ readed.user.email }}</td>
                 <td>{{ readed.Phone }}</td>
             </tr>
 

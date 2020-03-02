@@ -5,8 +5,7 @@
     <title>{% block title %}Title{% endblock %}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
         divcontent {
             width: 80vw;
@@ -78,10 +77,11 @@
                                 {{ user.username }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/profile/edit">Profile Edit</a>
+
                                 {% if user.is_superuser %}
-                                    <a class="dropdown-item" href="/admin/">Admin Panel</a>
+                                    <a class="dropdown-item" href="/dbadmin/">Datebase Admin</a>
                                 {% endif %}
+                                <a class="dropdown-item" href="/profile/edit">Profile Edit</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Log out</a>
                             </div>

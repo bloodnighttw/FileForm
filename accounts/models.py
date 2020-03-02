@@ -18,3 +18,5 @@ class Profile(models.Model):
 	)
 	Phone = models.CharField(max_length=30)
 	number = models.IntegerField()
+	dev = models.CharField(max_length= 30 ,default='False')
+	

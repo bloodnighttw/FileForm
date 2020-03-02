@@ -2,6 +2,14 @@
 
 {% block content %}
 
+    {% for messange in messages %}
+
+    <div class="alert alert-success" role="alert">
+        {{ messange }}
+    </div>
+    {% endfor %}
+
+
 	{% for post in posts%}
 
 		<a href="/post/{{ post.post_id }}" class="card border-dark mb-3 text-center">
@@ -11,10 +19,6 @@
 		    <p class="card-text">{{ post.preview }}</p>
 		  </div>
 		</a>
-
-
-	
-
 	{% endfor %}
 	
 
