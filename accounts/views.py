@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import auth, User
@@ -71,7 +74,7 @@ def register(request):
         user.set_password(password)
         user.save()
 
-        profile = Profile(user=user,number=int(num),Phone=phone)
+        profile = Profile(user=user,number=int(num),Phone=phone,uuid=generateUuid())
         profile.save()
         messages.info(request,'成功註冊且登入')
         auth.login(request,user)
@@ -101,3 +104,9 @@ def logout(request):
     auth.logout(request)
     messages.info(request,'成功登出')
     return redirect('/index')
+
+def generateUuid():
+    stringLength = 25
+    """Generate a random string of fixed length """
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))

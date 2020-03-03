@@ -1,3 +1,5 @@
+from _ctypes import sizeof
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -5,12 +7,19 @@ from django.contrib import messages
 from accounts.models import Profile
 from .models import Post
 import json, markdown as markdown2
+from accounts.views import generateUuid
 
 
 # Create your views here.
 def post_index(request):
-    all1 = Post.objects.all().order_by('post_id')
-    return render(request, 'index.html', {'posts': all1[::-1]})
+    if request.user.is_authenticated:
+        if request.user.profile.uuid == "None":
+            profile = request.user.profile
+            profile.uuid = generateUuid()
+            profile.save()
+        all1 = Post.objects.all().order_by('post_id')
+        return render(request, 'index.html', {'posts': all1[::-1]})
+    return redirect('/login/')
 
 
 def post(request, post_id):
@@ -19,13 +28,11 @@ def post(request, post_id):
             post = Post.objects.get(post_id=post_id)
             readeds = json.loads(post.readed)
             time = int(0)
-            for readed in readeds:
-                user = readed.get('username')
-                if user == request.user.username:
+            for user in readeds:
+                if user == request.user.profile.uuid:
                     time = time + 1
             if time == 0:
-                name = request.user.first_name + request.user.last_name
-                readeds.append({'username': request.user.username, 'name': name})
+                readeds.append(request.user.profile.uuid)
             post.readed = json.dumps(readeds)
             post.save()
             content = markdown2.markdown("# [" + post.title + "]\n" + post.content)
@@ -39,28 +46,20 @@ def readed(request, post_id):
         if request.user.is_authenticated:
             post = Post.objects.get(post_id=post_id)
             readeds = json.loads(post.readed)
-            no_reads = []
+
             user_readeds = []
-            for no_read in User.objects.all():
-                no_reads.append(no_read)
+            for user in readeds:
+                user_readeds.append(User.objects.get(profile__uuid=user))
 
-            for readed in readeds:
-                user_readeds.append(User.objects.get(username=readed.get('username')))
-                no_reads.remove(User.objects.get(username=readed.get('username')))
+            profileList = list(User.objects.all().order_by('profile__number'))
 
-            qset = Profile.objects.all().order_by('number')
-            profilelist = []
-            for g in qset:
-                profilelist.append(g)
 
-            for readed in user_readeds:
-                profile = Profile.objects.get(user=readed)
-                profilelist.remove(profile)
+            for user in user_readeds:
+                profileList.remove(user)
 
-            ###To user list
 
             return render(request, 'Post/readed.html',
-                          {'readeds': user_readeds, 'post': post, 'non_readeds': profilelist})
+                          {'readeds': user_readeds, 'post': post, 'non_readeds': profileList})
     except:
         return render(request, 'other/Error.html')
 

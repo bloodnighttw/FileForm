@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+
 from Form import settings
 
 
@@ -19,4 +20,5 @@ class Profile(models.Model):
 	Phone = models.CharField(max_length=30)
 	number = models.IntegerField()
 	dev = models.CharField(max_length= 30 ,default='False')
+	uuid = models.CharField(max_length=50 ,default="None")
 	
